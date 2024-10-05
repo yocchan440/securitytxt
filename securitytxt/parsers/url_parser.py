@@ -101,7 +101,7 @@ class URLParser:
         :return: The text of a security.txt
         :raises ConnectionError: If the URL does not contain a security.txt
         """
-        response = get(url, headers=self.headers, allow_redirects=self.allow_redirects)
+        response = get(url, headers=self.headers, allow_redirects=self.allow_redirects, timeout=(3, 10))
         if not response.ok:
             raise ConnectionError(f"Url {url} returned non-successful status code {response.status_code}")
         if '<htm' in response.text:
